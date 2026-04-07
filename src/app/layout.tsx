@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ITDEV-164 — Course Dashboard",
-  description: "AI-native web development with Next.js, Tailwind, and Supabase",
+  title: "Joniel Santiago — Web Developer",
+  description: "Developer profile showcasing skills and projects",
 };
 
 export default function RootLayout({
