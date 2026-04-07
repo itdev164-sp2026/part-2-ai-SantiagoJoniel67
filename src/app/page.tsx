@@ -1,76 +1,87 @@
-import { Code, Cpu, Layout, Rocket, Server, ShieldCheck } from "lucide-react";
+import {
+  Code,
+  Cpu,
+  Database,
+  Layout,
+  Palette,
+  Rocket,
+} from "lucide-react";
 
-const assignments = [
+const skills = [
   {
-    week: 1,
-    title: "Setup & Next.js Scaffolding",
-    description: "Initialize your project, configure tooling, and verify your AI-assisted workflow.",
-    icon: Rocket,
-  },
-  {
-    week: 2,
-    title: "Agentic UI with Shadcn",
-    description: "Build dashboard layouts and reusable components with Shadcn/ui and Tailwind.",
-    icon: Layout,
-  },
-  {
-    week: 3,
-    title: "Server Components & Data Fetching",
-    description: "Leverage React Server Components and async data patterns in the App Router.",
-    icon: Server,
-  },
-  {
-    week: 4,
-    title: "AI-Driven Forms & Validation",
-    description: "Create forms with Zod schemas and Server Actions for type-safe data handling.",
+    id: 1,
+    name: "TypeScript",
+    description: "Type-safe JavaScript development",
     icon: Code,
   },
   {
-    week: 5,
-    title: "Full-Stack Integration",
-    description: "Connect Supabase for authentication, database operations, and real-time data.",
+    id: 2,
+    name: "React",
+    description: "Building interactive user interfaces",
+    icon: Layout,
+  },
+  {
+    id: 3,
+    name: "Next.js",
+    description: "Full-stack React framework",
+    icon: Rocket,
+  },
+  {
+    id: 4,
+    name: "Tailwind CSS",
+    description: "Utility-first CSS styling",
+    icon: Palette,
+  },
+  {
+    id: 5,
+    name: "Node.js",
+    description: "Backend JavaScript runtime",
     icon: Cpu,
   },
   {
-    week: 6,
-    title: "Deployment & AI Testing",
-    description: "Deploy to Vercel, set up webhooks, and write AI-assisted tests.",
-    icon: ShieldCheck,
+    id: 6,
+    name: "SQL & Databases",
+    description: "Data management and queries",
+    icon: Database,
   },
 ];
 
-export default function HomePage() {
+export default function DeveloperProfile() {
   return (
-    <div className="space-y-8">
-      <section className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">
-          Course Dashboard
-        </h1>
-        <p className="text-muted-foreground">
-          ITDEV-164 — Web Programming 2: AI-native full-stack development with
-          Next.js, Tailwind&nbsp;CSS, and Supabase.
+    <div className="space-y-12">
+      <section className="space-y-4">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold tracking-tight">Joniel Santiago</h1>
+          <p className="text-lg text-muted-foreground">
+            Web Development Student
+          </p>
+        </div>
+        <p className="max-w-2xl text-base leading-relaxed">
+          Passionate about building modern web applications with Next.js and
+          React. I&apos;m learning full-stack development and exploring
+          AI-native development practices to create scalable, user-centric solutions.
         </p>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {assignments.map(({ week, title, description, icon: Icon }) => (
-          <div
-            key={week}
-            className="group rounded-lg border border-border bg-card p-5 transition-colors hover:border-primary/40"
-          >
-            <div className="mb-3 flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-md bg-muted">
-                <Icon className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
+      <section className="space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.map(({ id, name, description, icon: Icon }) => (
+            <div
+              key={id}
+              className="group rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/40 hover:shadow-md"
+            >
+              <div className="mb-3 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-muted transition-colors group-hover:bg-primary/10">
+                  <Icon className="h-6 w-6 text-muted-foreground transition-colors group-hover:text-primary" />
+                </div>
               </div>
-              <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-                Week {week}
-              </span>
+              <h3 className="mb-2 font-semibold">{name}</h3>
+              <p className="text-sm text-muted-foreground">{description}</p>
             </div>
-            <h2 className="mb-1 font-semibold leading-snug">{title}</h2>
-            <p className="text-sm text-muted-foreground">{description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
-    </div>
+      </div>
   );
 }
