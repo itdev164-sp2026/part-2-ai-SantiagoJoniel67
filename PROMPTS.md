@@ -102,3 +102,61 @@ It was able to fix the issue but then it wrote some of the code differently then
 > the Agent context about existing code you want to preserve?
  
  The Agent did not overwrite any existing code. However it did generate slightly different code in class than when I was preparing for class, which it was between hectic and good at the same time because I learned something at times.
+ 
+ ## Activity 3: Server-Side Data with Supabase
+
+### Prompt 1
+
+**What I asked:**
+
+> (Paste the prompt you used to generate the projects page)
+
+Using the Supabase client at src/lib/supabase.ts, create a new Server Component
+at src/app/projects/page.tsx that:
+
+1. Fetches all records from the "projects" table in Supabase
+2. Displays them in a professional layout using shadcn/ui Card components
+   (run `npx shadcn@latest add card` if needed)
+3. Each card should show the project title, description, and a status badge
+4. The status badge should be color-coded:
+   - "active" = green
+   - "completed" = blue
+   - "archived" = gray
+
+Use @workspace context to match the styling of our existing Dashboard.
+This must be a React Server Component (async function, no "use client").
+Do NOT use useEffect or useState for data fetching.
+
+**What happened:**
+
+> (Did the Agent create a Server Component or a Client Component?
+> Did it use async/await or useEffect? Did you have to correct it?)
+
+The agent created the server component as requested, and now corrections were needed.
+### Prompt 2
+
+**What I asked:**
+
+> (Paste breadcrumb prompt)
+
+The breadcrumb in src/app/layout.tsx always shows "Overview" because the page
+name is hardcoded. Extract the breadcrumb into its own client component at
+src/components/breadcrumb-nav.tsx that uses usePathname() from next/navigation
+to display the correct page name. Map "/" to "Overview", "/projects" to
+"Projects", and "/settings" to "Settings". Keep "ITDEV-164" as the first
+breadcrumb segment. Then update layout.tsx to use the new component.
+
+
+**What happened:**
+
+> (Describe the result and what you learned from the exchange)
+
+The agent created the breadcrumb and pretty much it didn't change as much for when I ran in through copliot.
+### Reflection
+
+> How does fetching data on the server feel different from the useEffect
+> pattern you used in Web Programming 1? What are the advantages you
+> noticed? Did anything surprise you about how simple server-side
+> data fetching is in the App Router?
+
+Fetching data on the server(and without using an api endpoint) is a bit strange coming from a REST api background, but either it gave me straightfoward portion of what copliot did towards my file, and refactoring my errors towards adding client-side hooks for data fetching and updating.
