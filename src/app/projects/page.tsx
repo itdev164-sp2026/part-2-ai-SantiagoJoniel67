@@ -1,4 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase"
 import { cn } from "@/lib/utils"
 
@@ -74,9 +76,14 @@ export default async function ProjectsPage() {
               A focused view for featured work, case studies, and ongoing builds.
             </p>
           </div>
-          <p className="text-sm text-muted-foreground">
-            {projects.length} project{projects.length === 1 ? "" : "s"}
-          </p>
+          <div className="flex items-center gap-2">
+            <p className="text-sm text-muted-foreground">
+              {projects.length} project{projects.length === 1 ? "" : "s"}
+            </p>
+            <Link href="/projects/new">
+              <Button variant="default" size="sm">New Project</Button>
+            </Link>
+          </div>
         </div>
       </section>
 

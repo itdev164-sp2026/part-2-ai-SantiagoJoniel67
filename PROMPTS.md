@@ -160,3 +160,88 @@ The agent created the breadcrumb and pretty much it didn't change as much for wh
 > data fetching is in the App Router?
 
 Fetching data on the server(and without using an api endpoint) is a bit strange coming from a REST api background, but either it gave me straightfoward portion of what copliot did towards my file, and refactoring my errors towards adding client-side hooks for data fetching and updating.
+
+## Activity 4: AI-Driven Forms & Validation
+
+### Prompt 1
+
+**What I asked:**
+
+> (Paste the prompt you used to create the Zod schema)
+Create a Zod validation schema in a new file src/lib/schemas.ts for a "Project"
+with the following fields:
+
+- title: string, minimum 3 characters, with a custom error message
+  "Title must be at least 3 characters"
+- description: string, minimum 10 characters, with a custom error message
+  "Description must be at least 10 characters"
+- status: enum with values "active", "completed", "archived"
+
+Export the schema and also export the inferred TypeScript type using z.infer.
+
+
+**What happened:**
+
+> (Did the Agent create the schema correctly? Did it export both
+> the schema and the inferred type?)
+Yeah when I paste the corrective prompt for giving copliot that message of creating schema it ended up being a success and it added a New Project icon where I can give a project name and I can create it as well.
+
+### Prompt 2
+
+**What I asked:**
+
+> (Paste the prompt you used to generate the form and Server Action)
+Using the Zod schema from src/lib/schemas.ts, do the following:
+
+1. Create a form component at src/components/project-form.tsx that:
+   - Is a Client Component ("use client") because it uses react-hook-form hooks
+   - Uses react-hook-form with the zodResolver from @hookform/resolvers for validation
+   - Uses shadcn/ui Field, FieldLabel, and FieldError for field layout
+   - Uses shadcn/ui Input for title, Textarea for description, and Select for status
+   - Shows inline error messages under each field when validation fails
+   - Has a "Create Project" submit button
+   - Shows a sonner toast notification on successful submission
+
+2. Create a Server Action at src/app/actions.ts that:
+   - Has "use server" at the top of the file
+   - Accepts the validated form data
+   - Validates it again with the Zod schema (server-side validation)
+   - Inserts the validated data into the Supabase "projects" table
+   - Returns a success or error response
+
+3. Create a new page at src/app/projects/new/page.tsx that renders
+   the project form within the dashboard layout.
+
+4. Add a "New Project" button to the existing projects page
+   (src/app/projects/page.tsx) that links to /projects/new.
+
+Use @workspace to match the existing project styling.
+
+**What happened:**
+
+> (How did the Agent handle creating multiple files? Did it connect
+> the form submission to the Server Action correctly? Did it include
+> server-side Zod validation?)
+
+It connected perfectly the way I see I didn't any errors placed throughout the code so when it generated route.ts, and page.tsx it managed to operate nicely as well.
+
+### Prompt 3 (if applicable)
+
+**What I asked:**
+
+> (Any follow-up prompt — fixing notifications, adding server-side
+> validation, or correcting form field behavior)
+I didn't need to fix anything so for me I just kept it how it operated towards not asking copilot to fix anything.
+
+**What happened:**
+
+> (Describe the result)
+there was chances that page.tsx was being fixed and it did copilot just changed a text generating a New Project button towards the website when you can create a project.
+
+### Reflection
+
+> How does the Schema-First approach with Zod change the way you think
+> about forms? How does it help prevent "junk data" from entering the
+> database? Compare this to how you handled form validation in
+> previous courses.
+I think between knowing and testing how junk data works it ended be more interesting to see and operate with copilot and gave some proper files and change some of the lines but ended up being a success and nothing break as well which is really good as well.
