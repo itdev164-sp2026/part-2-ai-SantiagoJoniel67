@@ -245,3 +245,71 @@ there was chances that page.tsx was being fixed and it did copilot just changed 
 > database? Compare this to how you handled form validation in
 > previous courses.
 I think between knowing and testing how junk data works it ended be more interesting to see and operate with copilot and gave some proper files and change some of the lines but ended up being a success and nothing break as well which is really good as well.
+## Activity 5: Securing the App with Supabase Auth
+
+### Prompt 1
+
+**What I asked:**
+
+> (Paste the main prompt you used for the full auth implementation)
+Implement a complete email/password authentication flow for this Next.js 15
+App Router project using @supabase/ssr. Here is what I need:
+
+SUPABASE CLIENTS: Create server-side Supabase client utilities in
+src/lib/supabase/ that work correctly with Next.js cookies. I need
+separate clients for Server Components, Server Actions, and Middleware.
+
+LOGIN PAGE: Create a page at src/app/(auth)/login/page.tsx with a
+shadcn/ui card-based login form. It should support both "Sign In"
+and "Sign Up" (toggle between them or use tabs). Handle the auth
+via Server Actions, not client-side fetch.
+
+MIDDLEWARE: Create a middleware.ts file at src/middleware.ts (next to
+the app directory — Next.js looks for middleware as a sibling of app)
+that:
+
+Refreshes the user's auth session on every request
+Protects the /projects routes — redirect unauthenticated users to /login
+Allows unauthenticated access to /login
+Uses supabase.auth.getUser() (NOT getSession()) for verification
+SIGN OUT: Add a "Sign Out" button to the existing sidebar component
+(src/components/app-sidebar.tsx) that calls a Server Action to sign
+the user out and redirect to /login. The button must only render
+when an authenticated user is present — pass the user as a prop from
+the root layout (which will need to fetch it via the server Supabase
+client) and gate the Sign Out UI on that prop.
+
+UPDATE DATA QUERIES: Modify the projects page and the create-project
+Server Action to use the authenticated Supabase client so that RLS
+policies filter data per user.
+
+Use @workspace to understand the existing project structure. Do not remove
+or break existing functionality — integrate auth around it.
+
+**What happened:**
+
+> (How many files did the Agent create or modify? Did it handle
+> middleware, login page, sign out, and data scoping all in one pass?)
+At the middleware wasn't functioning correctly but type in a text towards copilot and everything worked after that in the middleware.ts file.
+
+### Prompt 2
+
+**What I asked:**
+
+> (Paste any follow-up — fixing the redirect after login, correcting
+> getSession vs getUser, handling middleware route matching, etc.)
+can you fix this issue error on src/lib/supabase/middleware.ts (5:18) @ createMiddlewareClient and everything went smoothly having to fix the page and switching between 2 emails which was dope in a way and creating one project between 2 emails.
+
+**What happened:**
+
+> (Describe the fix and what you learned)
+What I learned that there was a sense of knowing which line it made a change of and what was deleted, and that helped me knew about the middleware.ts was missing an import of nextserver method and it helped a lot towards fixing an error.
+
+### Reflection
+
+> How did the Agent handle the creation of middleware.ts? Did you have
+> to manually add files to the Working Set for context? What surprised
+> you about how many files needed to change to add authentication?
+> How does middleware-based auth compare to checking login status
+> inside each page component?
+It managed to gather all up each and every folder possible and ended up in a good result adding in sign-up/sign-in which in my opinion was successful towards the code where it made a big help where now you add in a new project and once it was executed it was shown what I named and describe it to be.

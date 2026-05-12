@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { supabase } from "@/lib/supabase"
+import { createClient } from "@/lib/supabase/server"
 import { cn } from "@/lib/utils"
 
 type ProjectRecord = {
@@ -35,9 +35,38 @@ function getProjectDescription(description: string | null) {
 }
 
 export default async function ProjectsPage() {
+  const supabase = await createClient()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    return (
+      <div className="space-y-6">
+        <section className="space-y-2">
+          <h1 className="text-3xl font-semibold tracking-tight">Projects</h1>
+          <p className="max-w-2xl text-sm text-muted-foreground">
+            A focused view for featured work, case studies, and ongoing builds.
+          </p>
+        </section>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Unauthorized</CardTitle>
+            <CardDescription>
+              You must be signed in to view your projects.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    )
+  }
+
   const { data, error } = await supabase
     .from("projects")
     .select("id, title, description, status")
+    .eq("user_id", user.id)
 
   if (error) {
     return (

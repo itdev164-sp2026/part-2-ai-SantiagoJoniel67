@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FolderOpen, Home, Settings } from "lucide-react";
+import { FolderOpen, Home, Settings, LogOut } from "lucide-react";
+import type { User } from "@supabase/supabase-js";
 
 import { cn } from "@/lib/utils";
+import { signOut } from "@/app/actions";
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -40,8 +43,16 @@ const navigationItems = [
   },
 ];
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  user: User | null;
+}
+
+export function AppSidebar({ user }: AppSidebarProps) {
   const pathname = usePathname();
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <Sidebar collapsible="icon" variant="inset">
@@ -89,10 +100,27 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className={cn("border-t border-sidebar-border/70 p-4") }>
-        <div className="text-xs text-sidebar-foreground/70 group-data-[collapsible=icon]:hidden">
-          Built with Next.js and shadcn/ui
-        </div>
+      <SidebarFooter className={cn("border-t border-sidebar-border/70 p-4 space-y-4")}>
+        {user ? (
+          <div className="space-y-3">
+            <div className="text-xs text-sidebar-foreground/70 group-data-[collapsible=icon]:hidden">
+              <p className="font-medium truncate">{user.email}</p>
+            </div>
+            <Button
+              onClick={handleSignOut}
+              variant="ghost"
+              size="sm"
+              className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
+            >
+              <LogOut className="mr-2 size-4" />
+              <span className="group-data-[collapsible=icon]:hidden">Sign Out</span>
+            </Button>
+          </div>
+        ) : (
+          <div className="text-xs text-sidebar-foreground/70 group-data-[collapsible=icon]:hidden">
+            Built with Next.js and shadcn/ui
+          </div>
+        )}
       </SidebarFooter>
 
       <SidebarRail />
