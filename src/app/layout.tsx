@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Header } from "@/components/header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { getUser } from "@/app/actions";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -20,11 +21,13 @@ export const metadata: Metadata = {
   description: "Developer profile showcasing skills and projects",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
+
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className={`${inter.variable} font-sans antialiased`}>
@@ -36,7 +39,7 @@ export default function RootLayout({
         >
           <TooltipProvider>
             <SidebarProvider defaultOpen>
-              <AppSidebar />
+              <AppSidebar user={user} />
               <SidebarInset>
                 <Header />
                 <div className="flex-1 px-4 py-6 md:px-6 lg:px-8">{children}</div>

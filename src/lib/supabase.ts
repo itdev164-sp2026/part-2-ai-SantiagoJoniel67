@@ -1,6 +1,10 @@
-import { createClient } from "@supabase/supabase-js";
+/**
+ * DEPRECATED: Use createClient from @/lib/supabase/server instead.
+ * This file is kept for backward compatibility during migration.
+ * 
+ * @example
+ * import { createClient } from '@/lib/supabase/server';
+ * const supabase = await createClient();
+ */
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export { createClient } from "@/lib/supabase/server";
