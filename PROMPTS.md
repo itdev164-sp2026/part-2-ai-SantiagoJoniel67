@@ -313,3 +313,90 @@ What I learned that there was a sense of knowing which line it made a change of 
 > How does middleware-based auth compare to checking login status
 > inside each page component?
 It managed to gather all up each and every folder possible and ended up in a good result adding in sign-up/sign-in which in my opinion was successful towards the code where it made a big help where now you add in a new project and once it was executed it was shown what I named and describe it to be.
+## Activity 6: Deployment, Webhooks, & AI-Testing
+
+### Prompt 1
+
+**What I asked:**
+
+> (Paste the prompt you used to generate the Playwright tests)
+I have a Next.js app with Supabase Auth. Using @workspace context to
+understand the app structure, write an End-to-End (E2E) test file at
+tests/auth.spec.ts using Playwright.
+
+The tests should verify:
+
+1. LOGIN PAGE VISIBLE: Navigate to /login and confirm the login form
+   is visible (check for email input, password input, and submit button).
+
+2. REDIRECT AFTER LOGIN: After a successful login with valid credentials,
+   the user is redirected to the dashboard or projects page.
+
+3. SIDEBAR NAVIGATION: After login, verify that the sidebar navigation
+   links are visible: "Overview", "Projects", and "Settings".
+
+Requirements:
+- Use role-based locators (getByRole, getByLabel, getByText) instead of
+  CSS selectors or test IDs. This makes tests more accessible and resilient
+  to UI changes.
+- Add clear test descriptions that explain what each test verifies.
+- Handle the async nature of navigation and page loads with proper
+  Playwright waiting strategies.
+- Read test credentials from process.env.TEST_USER_EMAIL and
+  process.env.TEST_USER_PASSWORD. Do not hardcode credentials. If those
+  variables are not set, the credentialed tests should skip with a clear
+  message rather than fail.
+
+
+**What happened:**
+
+> (Did the Agent use role-based locators? Did it understand the auth
+> flow from your workspace context? Did the tests pass on the first run?)
+It went smoothly and didn't break at all which was the good about it when copilot montioring the code.
+
+### Prompt 2
+
+**What I asked:**
+
+> (Paste the prompt you used to fix a failing test, or a follow-up
+> to improve test coverage)
+following error:
+  2) tests\auth.spec.ts:111:7 › Authentication Flow › should display sidebar navigation links after login 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "commit"
+    ============================================================
+
+      137 |
+      138 |     // Wait for navigation to /projects
+    > 139 |     await page.waitForURL(/\/projects/, { waitUntil: "commit" });
+          |                ^
+      140 |
+      141 |     // Wait for the page to fully load
+      142 |     await page.waitForLoadState("networkidle");
+        at C:\Users\Anthony\OneDrive\Desktop\santiagoITDEV-164sp26\part-2-ai-SantiagoJoniel67\tests\auth.spec.ts:139:16
+
+
+
+**What happened:**
+
+> (Describe the iterative process — how many rounds did it take
+> to get the tests passing?)
+It worked perfectly as it should be honestly at first it wasn't functioning right at first the end it went successfully good.
+### Reflection
+
+> How does having an AI write and run tests change your confidence in
+> "hitting the deploy button"? Did the Agent catch anything you would
+> have missed? How does this compare to manually testing in the browser?
+I changed mostly everything with this prompt honestly it was a lot fun working AI but won't want to keep use it as long if I ask questions on things through a syntax that am stuck on.
+### Course Reflection
+
+> Look back at your complete PROMPTS.md from Activity 1 to Activity 6.
+> How has your prompting strategy evolved? What do you do differently
+> now compared to your first prompt in Activity 1? What is the most
+> important thing you learned about working with AI coding tools?
+That AI is tool that can be used for so many things and honestly it was I learned a lot when writing out this prompt out, and after working towards activity 1 - 2 I learned a lot of fun things throughout this semester as well but honestly for me I wouldn't want myself to rely on AI as much through my projects but I would use if I'm very stuck on small meaning or a piece of code but to be honest with you I'm happy I learned something fun.
+
