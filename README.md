@@ -84,5 +84,5 @@ src/
 
 ## Live Site
 
-Deployed at: [your-vercel-url](https:part-2-ai-santiago-joniel67.vercel.app)
+Deployed at: [your-vercel-url](https://part-2-ai-santiago-joniel67.vercel.app)
               |
