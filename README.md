@@ -80,4 +80,9 @@ src/
 | `npm run dev`   | Start dev server (Turbopack) |
 | `npm run build` | Production build             |
 | `npm run start` | Serve production build       |
-| `npm run lint`  | Run ESLint                   |
+| `npm run lint`  | Run ESLint     
+
+## Live Site
+
+Deployed at: [your-vercel-url](https:part-2-ai-santiago-joniel67.vercel.app)
+              |
